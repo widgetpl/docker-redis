@@ -9,5 +9,5 @@ if [ -z "$1" ]; then
     print_help_and_exit
 fi
 
-REPLICAS = $1; shift
-docker run -it oberthur/redis-tools /redis-3.0.5/src/redis-trib.rb create --replicas REPLICAS $@
+REPLICAS=$1; shift
+docker run -it oberthur/redis-tools /redis-3.0.5/src/redis-trib.rb create --replicas $REPLICAS $@
