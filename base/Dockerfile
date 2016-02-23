@@ -4,10 +4,10 @@ MAINTAINER Konrad Król <k.krol@oberthur.com>
 
 RUN apt-get update
 RUN apt-get install -y build-essential wget
-RUN wget http://download.redis.io/releases/redis-3.0.5.tar.gz
-RUN tar xvfz redis-3.0.5.tar.gz
-RUN cd redis-3.0.5 && make
-RUN cd redis-3.0.5 && make install
+RUN wget http://download.redis.io/releases/redis-3.0.7.tar.gz
+RUN tar xvfz redis-3.0.7.tar.gz
+RUN cd redis-3.0.7 && make
+RUN cd redis-3.0.7 && make install
 
 #
 # build:  docker build -t oberthur/redis-base:1.0.0 .

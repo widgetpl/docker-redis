@@ -17,12 +17,12 @@ docker rm redis-cluster-node5
 docker rm redis-cluster-node6
 
 # start docker container
-docker run -d --net=host -e "PORT=6379" --name=redis-cluster-node1 oberthur/redis-cluster
-docker run -d --net=host -e "PORT=6380" --name=redis-cluster-node2 oberthur/redis-cluster
-docker run -d --net=host -e "PORT=6381" --name=redis-cluster-node3 oberthur/redis-cluster
-docker run -d --net=host -e "PORT=6382" --name=redis-cluster-node4 oberthur/redis-cluster
-docker run -d --net=host -e "PORT=6383" --name=redis-cluster-node5 oberthur/redis-cluster
-docker run -d --net=host -e "PORT=6384" --name=redis-cluster-node6 oberthur/redis-cluster
+docker run -d --net=host --name=redis-cluster-node1 oberthur/redis-cluster:3.0.7 "/etc/redis.conf --port 6379"
+docker run -d --net=host --name=redis-cluster-node2 oberthur/redis-cluster:3.0.7 "/etc/redis.conf --port 6379"
+docker run -d --net=host --name=redis-cluster-node3 oberthur/redis-cluster:3.0.7 "/etc/redis.conf --port 6379"
+docker run -d --net=host --name=redis-cluster-node4 oberthur/redis-cluster:3.0.7 "/etc/redis.conf --port 6379"
+docker run -d --net=host --name=redis-cluster-node5 oberthur/redis-cluster:3.0.7 "/etc/redis.conf --port 6379"
+docker run -d --net=host --name=redis-cluster-node6 oberthur/redis-cluster:3.0.7 "/etc/redis.conf --port 6379"
 
 docker run -it oberthur/redis-tools /redis-trib-autoconfirm.rb create --replicas 1 \
 	192.168.99.100:6379 \
