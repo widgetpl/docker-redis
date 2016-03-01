@@ -1,6 +1,7 @@
 # REDIS cluster for Kubernetes use
 
 
+### Replication Controller example
 ~~~~
 apiVersion: v1
 kind: ReplicationController
@@ -68,4 +69,28 @@ spec:
             port: 6379
           initialDelaySeconds: 30
           timeoutSeconds: 5
+~~~~
+
+### Service example
+~~~~
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-001-node-101
+  labels:
+    type: cluster
+    app: redis
+    node: node-101
+spec:
+  ports:
+  - name: redis1-db
+    port: 6379
+    targetPort: 6379
+  - name: redis1-cluster
+    port: 16379
+    targetPort: 16379
+  selector:
+    app: redis
+    cluster-id: redis-cluster-001
+    node-id: node-101
 ~~~~
