@@ -12,11 +12,11 @@ LEVEL_ERROR="${CL_RED}ERROR${CL_RST}"
 
 if [ -z "${CLUSTER_CONFIG}" ]; then
 
-  echo "${LEVEL_ERROR} CLUSTER_CONFIG env variable not specified."
+  echo "${LEVEL_WARN} CLUSTER_CONFIG env variable not specified."
 
 else
 
-  printf "Applying cluster configuration from CLUSTER_CONFIG:\n"
+  printf "${LEVEL_INFO} Applying cluster configuration from CLUSTER_CONFIG:\n"
   while read -r line
   do
     printf "$line\n" >> nodes.tmp
@@ -31,11 +31,11 @@ fi
 
 if [ -z "${REDIS_CONFIG}" ]; then
 
-  echo "${LEVEL_INFO} CLUSTER_CONFIG env variable not specified, no more options will be applied or use your own redis.conf file"
+  echo "${LEVEL_WARN} CLUSTER_CONFIG env variable not specified, no more options will be applied or use your own redis.conf file"
 
 else
 
-  printf "Applying redis configuration from REDIS_CONFIG:\n"
+  printf "${LEVEL_INFO} Applying redis configuration from REDIS_CONFIG:\n"
 
   while read -r line
   do
