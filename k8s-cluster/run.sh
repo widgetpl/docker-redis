@@ -19,6 +19,7 @@ if [ -z "${CLUSTER_CONFIG}" ]; then
 
 else
 
+  printf "Applying cluster configuration from CLUSTER_CONFIG:\n"
   while read -r line
   do
     printf "$line\n" >> nodes.tmp
@@ -26,8 +27,27 @@ else
 
   while read -r line
   do
+    eval echo $line
     eval echo $line >> nodes.conf
   done < nodes.tmp
+
+  if [ -z "${REDIS_CONFIG}" ]; then
+
+    echo "${LEVEL_INFO} CLUSTER_CONFIG env variable not specified, no more options will be applied"
+
+  else
+
+    printf "Applying redis configuration from REDIS_CONFIG:\n"
+
+    while read -r line
+    do
+
+      printf "$line\n"
+      printf "$line\n" >> /etc/redis.conf
+
+    done <<< "$REDIS_CONFIG"
+
+  fi
 
 fi
 
@@ -42,7 +62,7 @@ if [ "${CAN_START}" = true ]; then
 
 else
 
-    echo -e "$i{LEVEL_ERROR} Some of mandatory environment variables variables was not specified. Exiting"
+    echo -e "${LEVEL_ERROR} Some of mandatory environment variables was not specified. Exiting"
     exit 1
 
 fi

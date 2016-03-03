@@ -33,7 +33,7 @@ spec:
       - name: redis-node-101
         image: widgetpl/rediscluster:0.9
         imagePullPolicy: IfNotPresent
-        command: ["/custom-entrypoint.sh"]
+        command: ["/run.sh"]
         args:
           - "redis-server"
           - "--appendonly no"
